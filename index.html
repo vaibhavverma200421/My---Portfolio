@@ -1,0 +1,560 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Vaibhav Verma — Portfolio</title>
+
+  <!-- Tailwind via CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --accent:#2563eb; /* blue */
+      --muted:#6b7280;
+      --card:#ffffff;
+      --bg:#fbfdff;
+    }
+    body{font-family:'Poppins',sans-serif;background:var(--bg);color:#0b1220}
+    header{backdrop-filter: blur(6px);}
+    /* Typing */
+    .typing { font-weight:700; font-size:2.5rem; line-height:1.05; }
+    .typing .cursor{ border-left: 3px solid var(--accent); padding-left:6px; margin-left:6px; animation: blink 700ms infinite; }
+    @keyframes blink{ 50%{ border-color: transparent } }
+
+    /* Reveal */
+    .reveal{opacity:0;transform:translateY(28px);transition:all .7s cubic-bezier(.17,.85,.44,1);}
+    .reveal.active{opacity:1;transform:none;}
+
+    /* Project thumbnail common */
+    .proj-thumb{height:11rem; display:block; width:100%; object-fit:cover}
+    .card-hover{transition: transform .32s ease, box-shadow .32s ease;}
+    .card-hover:hover{transform:translateY(-8px) scale(1.02); box-shadow:0 18px 40px rgba(37,99,235,0.12);}
+
+    /* navbar underline */
+    nav a{position:relative}
+    nav a::after{content:"";position:absolute;left:0;bottom:-6px;height:3px;width:0;background:var(--accent);transition:width .28s}
+    nav a:hover::after{width:100%}
+
+    /* modal */
+    .modal{display:none;position:fixed;inset:0;background:rgba(2,6,23,.55);align-items:center;justify-content:center;padding:20px;z-index:60}
+    .modal.open{display:flex}
+    .modal-card{background:white;border-radius:14px;max-width:900px;width:100%;overflow:hidden}
+    .modal-card .preview{height:320px;display:block;width:100%;object-fit:cover}
+    .close-btn{background:#111;padding:8px 12px;border-radius:8px;color:#fff}
+    .chip{display:inline-flex;gap:8px;align-items:center;padding:.35rem .6rem;border-radius:999px;background:#f1f5f9;color:#0b1220;font-weight:600;font-size:.9rem}
+    @media (max-width:768px){ .typing{font-size:1.6rem} .modal-card .preview{height:180px} }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <header class="fixed top-4 left-0 right-0 z-50">
+    <div class="max-w-6xl mx-auto px-6 flex items-center justify-between bg-white/70 backdrop-blur-md rounded-xl shadow-sm">
+      <div class="py-3">
+        <a href="#" class="text-2xl font-bold text-blue-600">VV</a>
+      </div>
+      <nav class="hidden md:flex gap-8 items-center text-sm font-medium text-slate-700">
+        <a href="#home">Home</a>
+        <a href="#about">About</a>
+        <a href="#projects">Projects</a>
+        <a href="#skills">Skills</a>
+        <a href="#certifications">Certifications</a>
+        <a href="#contact">Contact</a>
+      </nav>
+      <div class="hidden md:block pr-4">
+<a href="Vaibhav_Verma_Resume.pdf" target="_blank" class="px-4 py-2 rounded-lg bg-blue-600 text-white">
+    View Resume
+</a>
+
+
+
+      </div>
+      <div class="md:hidden pr-2"><button id="mobileBtn" class="p-2 rounded-lg bg-blue-50">☰</button></div>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <main class="pt-28">
+    <section id="home" class="max-w-6xl mx-auto px-6 grid md:grid-cols-2 gap-8 items-center">
+      <!-- Left: Profile & splash -->
+      <div class="order-2 md:order-1 flex flex-col items-start gap-6 reveal">
+        <div class="relative w-full max-w-sm bg-white rounded-2xl shadow-lg p-6">
+          <!-- Artistic frame around profile; keep your profile.jpg -->
+          <div class="w-full flex items-center gap-4">
+            <div class="w-28 h-28 rounded-xl overflow-hidden flex-shrink-0 border-2 border-slate-100 shadow-sm">
+              <img src="profile.jpg" alt="Vaibhav Verma" class="w-full h-full object-cover">
+            </div>
+            <div class="flex flex-col">
+              <div class="text-lg font-semibold">Vaibhav Verma</div>
+              <div class="text-sm text-slate-500 mt-1">Aspiring Data Analyst</div>
+              <div class="mt-2 inline-flex items-center gap-2">
+                <span class="chip"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" class="opacity-90"><path d="M12 2v20M2 12h20" stroke="#2563eb" stroke-width="1.4" stroke-linecap="round"/></svg>SQL</span>
+                <span class="chip">Power BI</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="mt-5 text-sm text-slate-600">
+            <p><strong>Location:</strong> Rohtak, Haryana</p>
+            <p class="mt-2"><strong>Email:</strong> <a href="mailto:vaibhavverma2727@gmail.com" class="text-blue-600">vaibhavverma2727@gmail.com</a></p>
+          </div>
+        </div>
+
+        <div class="w-full">
+          <h3 class="text-sm text-slate-500 uppercase mb-2">Featured</h3>
+          <div class="grid grid-cols-2 gap-3">
+            <a href="#projects" class="p-3 rounded-lg bg-white shadow card-hover text-sm">Explore Projects →</a>
+            <a href="Vaibhav_Verma_Resume.pdf" target="_blank" class="p-3 rounded-lg bg-white shadow card-hover text-sm">Open Resume</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right: Heading & CTA -->
+      <div class="order-1 md:order-2 reveal">
+        <div class="pl-2">
+          <div class="typing text-slate-900" id="typing"></div>
+          <p class="mt-6 text-slate-700 leading-relaxed">
+            I am an MCA student and aspiring Data Analyst specializing in SQL, Python, Power BI and data visualization. I transform raw datasets into actionable insights, design interactive dashboards and build reproducible analysis to help business leaders make data-driven decisions. I have experience creating Sales & Retail analytics, forecasting models, and automated data pipelines.
+          </p>
+
+          <div class="mt-6 flex gap-3">
+            <a href="#projects" class="px-5 py-3 rounded-lg bg-blue-600 text-white font-semibold shadow hover:scale-[1.02]">See Projects</a>
+            <a href="#contact" class="px-5 py-3 rounded-lg border border-slate-200 text-slate-800">Contact Me</a>
+          </div>
+
+          <div class="mt-6 text-sm text-slate-500">
+            <span class="mr-3">LinkedIn: <a href="https://www.linkedin.com/in/vaibhav-verma-479616312/" target="_blank" class="text-blue-600">vaibhav-verma</a></span>
+            <span>GitHub: <a href="https://github.com/vaibhavverma200421" target="_blank" class="text-blue-600">vaibhavverma200421</a></span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ABOUT -->
+    <section id="about" class="max-w-6xl mx-auto px-6 mt-14 reveal">
+      <div class="bg-white rounded-2xl shadow p-8">
+        <h2 class="text-2xl font-bold text-blue-600 mb-4">About Me</h2>
+        <p class="text-slate-700 leading-relaxed">
+          I'm <strong>Vaibhav Verma</strong>, an aspiring Data Analyst currently pursuing MCA. Over multiple projects I have worked with structured sales & transactional datasets to derive business insights — using SQL for extraction & aggregation, Python (Pandas/Matplotlib/Seaborn) for EDA, and Power BI for interactive dashboards. I enjoy blending statistics, storytelling and clear visual design to help stakeholders spot patterns, measure KPIs and act on growth opportunities.
+        </p>
+        <p class="mt-4 text-slate-700 leading-relaxed">
+          Key strengths: dataset cleaning, ETL thinking, exploratory analysis, dashboard design, KPI definition, and communicating actionable findings. I look for roles where I can apply analytical skills to real business problems and keep learning modern data tooling.
+        </p>
+      </div>
+    </section>
+
+    <!-- PROJECTS -->
+    <section id="projects" class="max-w-6xl mx-auto px-6 mt-12 reveal">
+      <div class="flex items-center justify-between mb-6">
+        <h2 class="text-2xl font-bold text-blue-600">Projects</h2>
+        <p class="text-sm text-slate-600">Click a project to preview & open on GitHub</p>
+      </div>
+
+      <div class="grid md:grid-cols-3 gap-6">
+        <!-- Project 1 -->
+        <article class="bg-white rounded-2xl overflow-hidden shadow card-hover" role="article">
+          <button onclick="openModal('m1')" class="w-full text-left">
+            <!-- Inline SVG thumbnail (generated) -->
+            <div class="proj-thumb">
+              <svg class="w-full h-full" viewBox="0 0 1200 600" preserveAspectRatio="xMidYMid slice">
+                <defs>
+                  <linearGradient id="g1" x1="0" x2="1"><stop offset="0" stop-color="#e0f2fe"/><stop offset="1" stop-color="#bfdbfe"/></linearGradient>
+                </defs>
+                <rect width="1200" height="600" fill="url(#g1)"/>
+                <g transform="translate(60,60)">
+                  <rect x="0" y="0" width="1080" height="420" rx="18" fill="white" opacity="0.06"/>
+                  <g transform="translate(40,60)" fill="#083344">
+                    <rect x="0" y="120" width="520" height="18" rx="8" fill="#0f172a" opacity="0.9"/>
+                    <rect x="0" y="80" width="420" height="18" rx="8" fill="#0f172a" opacity="0.8"/>
+                    <rect x="0" y="40" width="300" height="18" rx="8" fill="#0f172a" opacity="0.6"/>
+                    <!-- sample chart -->
+                    <g transform="translate(560,0)">
+                      <rect width="360" height="180" rx="12" fill="#fff" opacity="0.9"/>
+                      <path d="M20 150 L70 80 L120 110 L170 60 L220 90 L270 40" stroke="#2563eb" stroke-width="9" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+                    </g>
+                  </g>
+                </g>
+                <text x="70" y="520" font-size="36" fill="#0b1220" font-weight="700">Data Analytics Portfolio</text>
+              </svg>
+            </div>
+            <div class="p-5">
+              <h3 class="text-lg font-semibold">Data Analytics Portfolio</h3>
+              <p class="mt-2 text-sm text-slate-600">Collection of SQL, Power BI, Excel & Python projects demonstrating end-to-end analysis.</p>
+            </div>
+          </button>
+        </article>
+
+        <!-- Project 2 -->
+        <article class="bg-white rounded-2xl overflow-hidden shadow card-hover">
+          <button onclick="openModal('m2')" class="w-full text-left">
+            <div class="proj-thumb">
+              <svg viewBox="0 0 1200 600" preserveAspectRatio="xMidYMid slice">
+                <defs><linearGradient id="g2"><stop offset="0" stop-color="#fff7ed"/><stop offset="1" stop-color="#fde68a"/></linearGradient></defs>
+                <rect width="1200" height="600" fill="url(#g2)"/>
+                <g transform="translate(60,40)">
+                  <rect x="0" y="60" width="480" height="360" rx="14" fill="#fff" opacity="0.9"/>
+                  <g transform="translate(40,120)" fill="#111827">
+                    <rect width="360" height="18" rx="8" opacity="0.9"/>
+                    <rect y="40" width="300" height="18" rx="8" opacity="0.7"/>
+                    <rect y="80" width="260" height="18" rx="8" opacity="0.6"/>
+                  </g>
+                  <g transform="translate(620,80)">
+                    <rect width="420" height="260" rx="12" fill="#fff" opacity="0.92"/>
+                    <path d="M20 200 L70 120 L120 160 L170 90 L220 140 L270 60" stroke="#f97316" stroke-width="9" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+                  </g>
+                </g>
+                <text x="70" y="520" font-size="36" fill="#0b1220" font-weight="700">Music Store Data Analysis</text>
+              </svg>
+            </div>
+            <div class="p-5">
+              <h3 class="text-lg font-semibold">Music Store Data Analysis</h3>
+              <p class="mt-2 text-sm text-slate-600">Advanced SQL queries and business KPIs for store optimization.</p>
+            </div>
+          </button>
+        </article>
+
+        <!-- Project 3 -->
+        <article class="bg-white rounded-2xl overflow-hidden shadow card-hover">
+          <button onclick="openModal('m3')" class="w-full text-left">
+            <div class="proj-thumb">
+              <svg viewBox="0 0 1200 600" preserveAspectRatio="xMidYMid slice">
+                <defs><linearGradient id="g3"><stop offset="0" stop-color="#eef2ff"/><stop offset="1" stop-color="#c7d2fe"/></linearGradient></defs>
+                <rect width="1200" height="600" fill="url(#g3)"/>
+                <g transform="translate(60,60)">
+                  <rect x="20" y="40" width="520" height="380" rx="12" fill="#fff" opacity="0.95"/>
+                  <g transform="translate(70,120)" fill="#111827">
+                    <rect y="120" width="420" height="18" rx="8" />
+                    <rect y="80" width="320" height="18" rx="8" />
+                    <rect y="40" width="220" height="18" rx="8" />
+                  </g>
+                  <g transform="translate(640,80)">
+                    <rect width="420" height="260" rx="12" fill="#fff" opacity="0.92" />
+                    <path d="M40 200 L90 150 L140 170 L190 130 L240 150 L290 110" stroke="#10b981" stroke-width="9" fill="none" stroke-linecap="round"/>
+                  </g>
+                </g>
+                <text x="70" y="520" font-size="36" fill="#0b1220" font-weight="700">Super Store Forecasting</text>
+              </svg>
+            </div>
+            <div class="p-5">
+              <h3 class="text-lg font-semibold">Super Store Forecasting</h3>
+              <p class="mt-2 text-sm text-slate-600">Interactive forecasting & sales performance dashboards (Power BI).</p>
+            </div>
+          </button>
+        </article>
+
+        <!-- More projects: IMDB, Vrinda, UPI QR -->
+        <article class="bg-white rounded-2xl overflow-hidden shadow card-hover">
+          <button onclick="openModal('m4')" class="w-full text-left">
+            <div class="proj-thumb">
+              <svg viewBox="0 0 1200 600" preserveAspectRatio="xMidYMid slice">
+                <defs><linearGradient id="g4"><stop offset="0" stop-color="#fff1f2"/><stop offset="1" stop-color="#fecaca"/></linearGradient></defs>
+                <rect width="1200" height="600" fill="url(#g4)"/>
+                <g transform="translate(60,60)"><rect x="20" y="40" width="1080" height="360" rx="12" fill="#fff" opacity="0.92"/></g>
+                <text x="70" y="520" font-size="36" fill="#0b1220" font-weight="700">IMDB Dataset Analysis</text>
+              </svg>
+            </div>
+            <div class="p-5">
+              <h3 class="text-lg font-semibold">IMDB Dataset Analysis</h3>
+              <p class="mt-2 text-sm text-slate-600">EDA and visual storytelling on movie datasets with Python.</p>
+            </div>
+          </button>
+        </article>
+
+        <article class="bg-white rounded-2xl overflow-hidden shadow card-hover">
+          <button onclick="openModal('m5')" class="w-full text-left">
+            <div class="proj-thumb">
+              <svg viewBox="0 0 1200 600" preserveAspectRatio="xMidYMid slice">
+                <defs><linearGradient id="g5"><stop offset="0" stop-color="#e6fffa"/><stop offset="1" stop-color="#bff7ea"/></linearGradient></defs>
+                <rect width="1200" height="600" fill="url(#g5)"/>
+                <text x="70" y="320" font-size="36" fill="#0b1220" font-weight="700">Vrinda Store Dashboard</text>
+              </svg>
+            </div>
+            <div class="p-5">
+              <h3 class="text-lg font-semibold">Vrinda Store Dashboard</h3>
+              <p class="mt-2 text-sm text-slate-600">Excel dashboards visualizing store metrics & trends.</p>
+            </div>
+          </button>
+        </article>
+
+        <article class="bg-white rounded-2xl overflow-hidden shadow card-hover">
+          <button onclick="openModal('m6')" class="w-full text-left">
+            <div class="proj-thumb">
+              <svg viewBox="0 0 1200 600" preserveAspectRatio="xMidYMid slice">
+                <defs><linearGradient id="g6"><stop offset="0" stop-color="#e0f2fe"/><stop offset="1" stop-color="#dbeafe"/></linearGradient></defs>
+                <rect width="1200" height="600" fill="url(#g6)"/>
+                <text x="70" y="320" font-size="36" fill="#0b1220" font-weight="700">UPI QR Generator</text>
+              </svg>
+            </div>
+            <div class="p-5">
+              <h3 class="text-lg font-semibold">UPI QR Generator</h3>
+              <p class="mt-2 text-sm text-slate-600">Real-time QR code generator for UPI payment flows.</p>
+            </div>
+          </button>
+        </article>
+
+      </div>
+    </section>
+
+    <!-- INTERNSHIP -->
+    <section id="internship" class="max-w-6xl mx-auto px-6 mt-12 reveal">
+      <div class="bg-white rounded-2xl shadow p-6">
+        <h2 class="text-2xl font-bold text-blue-600">Internship</h2>
+        <div class="mt-4 grid md:grid-cols-2 gap-4 items-center">
+          <div>
+            <h3 class="text-lg font-semibold">Data Analyst Intern — 3 Months</h3>
+            <p class="mt-2 text-slate-700">Worked on data cleaning, data modelling, dashboard development and insights reporting. Built Power BI dashboards and automated SQL queries for weekly reporting. Presented insights to stakeholders and improved data refresh processes.</p>
+          </div>
+          <div class="text-sm text-slate-500">
+            <p><strong>Tools:</strong> Power BI, SQL, Excel, Jupyter</p>
+            <p class="mt-2"><strong>Deliverables:</strong> Sales dashboard, KPI tracker, automated ETL queries</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CERTIFICATIONS -->
+    <section id="certifications" class="max-w-6xl mx-auto px-6 mt-12 reveal">
+      <div class="bg-white rounded-2xl shadow p-6">
+        <h2 class="text-2xl font-bold text-blue-600">Certifications</h2>
+        <div class="mt-6 grid md:grid-cols-3 gap-4">
+          <div class="p-4 border rounded-lg">
+            <div class="flex items-start gap-3">
+              <div class="w-12 h-12 rounded-lg bg-blue-50 flex items-center justify-center">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M12 2l3 7h7l-5.5 4 2 7L12 16l-6.5 4 2-7L2 9h7l3-7z" fill="#2563eb"/></svg>
+              </div>
+              <div>
+                <div class="font-semibold">Data Analyst — Simplilearn</div>
+                <div class="text-sm text-slate-600">2024</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="p-4 border rounded-lg">
+            <div class="flex items-start gap-3">
+              <div class="w-12 h-12 rounded-lg bg-yellow-50 flex items-center justify-center">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><rect width="20" height="14" x="2" y="5" rx="2" fill="#f59e0b"/></svg>
+              </div>
+              <div>
+                <div class="font-semibold">Data Science — Simplilearn</div>
+                <div class="text-sm text-slate-600">2024</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="p-4 border rounded-lg">
+            <div class="flex items-start gap-3">
+              <div class="w-12 h-12 rounded-lg bg-green-50 flex items-center justify-center">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><rect width="18" height="14" x="3" y="5" rx="2" fill="#10b981"/></svg>
+              </div>
+              <div>
+                <div class="font-semibold">Power BI Data Analyst — Microsoft</div>
+                <div class="text-sm text-slate-600">2024</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SKILLS -->
+    <section id="skills" class="max-w-6xl mx-auto px-6 mt-12 reveal">
+      <div class="bg-white rounded-2xl shadow p-6">
+        <h2 class="text-2xl font-bold text-blue-600">Skills</h2>
+        <div class="mt-4 flex flex-wrap gap-3">
+          <span class="chip">Python (Pandas)</span>
+          <span class="chip">SQL / PostgreSQL</span>
+          <span class="chip">Power BI</span>
+          <span class="chip">Excel</span>
+          <span class="chip">Jupyter</span>
+          <span class="chip">Data Visualization</span>
+          <span class="chip">HTML / CSS / JS</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact" class="max-w-6xl mx-auto px-6 mt-12 reveal mb-20">
+      <div class="bg-white rounded-2xl shadow p-6">
+        <h2 class="text-2xl font-bold text-blue-600">Contact</h2>
+        <p class="mt-3 text-slate-700">Email: <a href="mailto:vaibhavverma2727@gmail.com" class="text-blue-600">vaibhavverma2727@gmail.com</a></p>
+        <p class="mt-2">LinkedIn: <a href="https://www.linkedin.com/in/vaibhav-verma-479616312/" target="_blank" class="text-blue-600">vaibhav-verma</a></p>
+        <p class="mt-2">GitHub: <a href="https://github.com/vaibhavverma200421" target="_blank" class="text-blue-600">vaibhavverma200421</a></p>
+        <div class="mt-6 flex gap-3">
+          <a href="VAIBHAV_VERMA (ATS FRIENDLY RESUME).pdf" target="_blank" class="px-5 py-3 rounded-lg bg-blue-600 text-white font-semibold">Open Resume</a>
+          <a href="mailto:vaibhavverma2727@gmail.com" class="px-5 py-3 rounded-lg border">Email Me</a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="py-8 text-center text-sm text-slate-500">© 2025 Vaibhav Verma — All rights reserved</footer>
+
+  <!-- MODALS: Each modal contains a preview + open button -->
+  <div id="m1" class="modal" aria-hidden>
+    <div class="modal-card">
+      <div class="p-5 flex items-center justify-between border-b">
+        <div>
+          <h3 class="text-lg font-semibold">Data Analytics Portfolio</h3>
+          <p class="text-sm text-slate-600">Overview: SQL + Power BI + Python projects.</p>
+        </div>
+        <button onclick="closeModal('m1')" class="close-btn">Close</button>
+      </div>
+      <div>
+        <!-- preview image (svg) -->
+        <svg class="preview" viewBox="0 0 1200 600" preserveAspectRatio="xMidYMid slice">
+          <rect width="1200" height="600" fill="#e6f7ff"/>
+          <path d="M60 420 L120 300 L200 340 L280 200 L360 260 L420 160 L480 220" stroke="#2563eb" stroke-width="16" fill="none" stroke-linecap="round"/>
+        </svg>
+      </div>
+      <div class="p-5 flex gap-3 justify-end border-t">
+        <a href="https://github.com/vaibhavverma200421/data-analytics-portfolio" target="_blank" class="px-4 py-2 rounded-md bg-blue-600 text-white font-semibold">Open on GitHub</a>
+      </div>
+    </div>
+  </div>
+
+  <div id="m2" class="modal" aria-hidden>
+    <div class="modal-card">
+      <div class="p-5 flex items-center justify-between border-b">
+        <div>
+          <h3 class="text-lg font-semibold">Music Store Data Analysis</h3>
+          <p class="text-sm text-slate-600">Overview: SQL analytics for store KPIs.</p>
+        </div>
+        <button onclick="closeModal('m2')" class="close-btn">Close</button>
+      </div>
+      <div>
+        <svg class="preview" viewBox="0 0 1200 600"><rect width="1200" height="600" fill="#fff7ed"/><path d="M80 420 L140 260 L220 310 L300 190 L380 270" stroke="#f97316" stroke-width="14" fill="none"/></svg>
+      </div>
+      <div class="p-5 flex gap-3 justify-end border-t">
+        <a href="https://github.com/vaibhavverma200421/MUSIC-STORE-DATA-ANALYSIS" target="_blank" class="px-4 py-2 rounded-md bg-blue-600 text-white font-semibold">Open on GitHub</a>
+      </div>
+    </div>
+  </div>
+
+  <div id="m3" class="modal" aria-hidden>
+    <div class="modal-card">
+      <div class="p-5 flex items-center justify-between border-b">
+        <div>
+          <h3 class="text-lg font-semibold">Super Store Forecasting</h3>
+          <p class="text-sm text-slate-600">Interactive dashboards & forecasting (Power BI).</p>
+        </div>
+        <button onclick="closeModal('m3')" class="close-btn">Close</button>
+      </div>
+      <div>
+        <svg class="preview" viewBox="0 0 1200 600"><rect width="1200" height="600" fill="#eef2ff"/><path d="M40 420 L100 260 L180 340 L260 200 L340 260 L420 180" stroke="#10b981" stroke-width="14" fill="none"/></svg>
+      </div>
+      <div class="p-5 flex gap-3 justify-end border-t">
+        <a href="https://github.com/vaibhavverma200421/Super-Store-advanced-e-ecommerce-dashboard-and-sales-forecasting" target="_blank" class="px-4 py-2 rounded-md bg-blue-600 text-white font-semibold">Open on GitHub</a>
+      </div>
+    </div>
+  </div>
+
+  <div id="m4" class="modal" aria-hidden>
+    <div class="modal-card">
+      <div class="p-5 flex items-center justify-between border-b">
+        <div>
+          <h3 class="text-lg font-semibold">IMDB Dataset Analysis</h3>
+          <p class="text-sm text-slate-600">EDA & visual storytelling using Python.</p>
+        </div>
+        <button onclick="closeModal('m4')" class="close-btn">Close</button>
+      </div>
+      <div>
+        <svg class="preview" viewBox="0 0 1200 600"><rect width="1200" height="600" fill="#fff1f2"/><circle cx="600" cy="300" r="120" fill="#fc8181"/></svg>
+      </div>
+      <div class="p-5 flex gap-3 justify-end border-t">
+        <a href="https://github.com/vaibhavverma200421/IMDB-DATASET-ANALYSIS" target="_blank" class="px-4 py-2 rounded-md bg-blue-600 text-white font-semibold">Open on GitHub</a>
+      </div>
+    </div>
+  </div>
+
+  <div id="m5" class="modal" aria-hidden>
+    <div class="modal-card">
+      <div class="p-5 flex items-center justify-between border-b">
+        <div>
+          <h3 class="text-lg font-semibold">Vrinda Store Dashboard</h3>
+          <p class="text-sm text-slate-600">Excel-based store visualizations.</p>
+        </div>
+        <button onclick="closeModal('m5')" class="close-btn">Close</button>
+      </div>
+      <div>
+        <svg class="preview" viewBox="0 0 1200 600"><rect width="1200" height="600" fill="#e6fffa"/><path d="M80 420 L200 260 L360 340 L520 240" stroke="#047857" stroke-width="12" fill="none"/></svg>
+      </div>
+      <div class="p-5 flex gap-3 justify-end border-t">
+        <a href="https://github.com/vaibhavverma200421/Vrinda-store-sales-dashboard" target="_blank" class="px-4 py-2 rounded-md bg-blue-600 text-white font-semibold">Open on GitHub</a>
+      </div>
+    </div>
+  </div>
+
+  <div id="m6" class="modal" aria-hidden>
+    <div class="modal-card">
+      <div class="p-5 flex items-center justify-between border-b">
+        <div>
+          <h3 class="text-lg font-semibold">UPI QR Generator</h3>
+          <p class="text-sm text-slate-600">Real-time QR code solution for UPI apps.</p>
+        </div>
+        <button onclick="closeModal('m6')" class="close-btn">Close</button>
+      </div>
+      <div>
+        <svg class="preview" viewBox="0 0 1200 600"><rect width="1200" height="600" fill="#e0f2fe"/><rect x="420" y="180" width="360" height="240" rx="12" fill="#111827"/></svg>
+      </div>
+      <div class="p-5 flex gap-3 justify-end border-t">
+        <a href="https://github.com/vaibhavverma200421/QR-CODE-generator-for-real-time-payments-for-all-UPI-apps" target="_blank" class="px-4 py-2 rounded-md bg-blue-600 text-white font-semibold">Open on GitHub</a>
+      </div>
+    </div>
+  </div>
+
+<script>
+  // Typing effect
+  const text = "Turning Vision Into Reality With Data & Code.";
+  let idx = 0;
+  function type() {
+    const el = document.getElementById('typing');
+    if (!el) return;
+    el.innerHTML = text.slice(0, idx) + (idx % 2 === 0 ? '<span class="cursor"></span>' : '<span class="cursor"></span>');
+    if (idx < text.length) {
+      idx++;
+      setTimeout(type, 45);
+    }
+  }
+  window.addEventListener('load', () => {
+    type();
+    // initial reveal
+    setTimeout(()=> document.querySelectorAll('.reveal').forEach((el,i)=> setTimeout(()=> el.classList.add('active'), i*120)), 220);
+  });
+
+  // Reveal on scroll
+  function revealScroll(){
+    document.querySelectorAll('.reveal').forEach(el=>{
+      const top = el.getBoundingClientRect().top;
+      if(top < window.innerHeight - 80) el.classList.add('active');
+    });
+  }
+  window.addEventListener('scroll', revealScroll);
+
+  // Modal functions
+  function openModal(id){
+    document.getElementById(id).classList.add('open');
+    document.getElementById(id).setAttribute('aria-hidden','false');
+  }
+  function closeModal(id){
+    document.getElementById(id).classList.remove('open');
+    document.getElementById(id).setAttribute('aria-hidden','true');
+  }
+  // close on overlay click
+  document.querySelectorAll('.modal').forEach(m=>{
+    m.addEventListener('click', (e)=>{
+      if(e.target === m) m.classList.remove('open');
+    });
+  });
+
+  // Mobile simple toggle
+  document.getElementById('mobileBtn').addEventListener('click', ()=>{
+    const nav = document.querySelector('nav');
+    if (nav.style.display === 'flex') nav.style.display = '';
+    else nav.style.display = 'flex';
+  });
+</script>
+
+</body>
+</html>
