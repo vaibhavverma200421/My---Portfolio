@@ -1,2 +1,9 @@
-# My---Portfolio
-My personal portfolio website built using HTML, CSS, JavaScript and Tailwind CSS. Showcasing my data analytics projects, certifications, internship experience and resume. Includes interactive UI, animations, project previews and modal display with GitHub integration.       
+# 🚀 Vaibhav Verma — Portfolio Website
+
+Live Portfolio: **https://vaibhavverma200421.github.io/My---Portfolio/**
+
+This website showcases my work in Data Analytics, including:
+- SQL projects
+- Power BI Dashboards
+- Forecasting & Sales Insights
+- Data Visualization & Storytelling
